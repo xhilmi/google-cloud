@@ -1,5 +1,5 @@
 # Simple HTTP Load Balancer in Google Cloud Platform
-# Debian or Ubuntu
+# Debian
 
 # Compute Engine
 - Virtual Machine
