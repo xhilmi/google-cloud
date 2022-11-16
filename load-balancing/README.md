@@ -1,4 +1,4 @@
-# How to Create a Simple HTTP Load Balancer in Google Cloud Platform
+# Simple HTTP Load Balancer in Google Cloud Platform
 1. Compute Engine > Instance Groups
 2. Create Instance Group > New managed instance group (stateless)
 	- Name : lb-group-hilmi
