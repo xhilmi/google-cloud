@@ -1,13 +1,18 @@
 # Simple HTTP Load Balancer in Google Cloud Platform
-1. Compute Engine > Instance Groups
-2. Create Instance Group > New managed instance group (stateless)
-	- Name : lb-group-hilmi
-	- Description : load balancer instance group
-	- Instant template 
-	- Location : Single zone (choose cheapest)
-	- Autoscaling : On add and remove instance to the group
-	  Minimum (2) Maximum (5)
-	- Autoscaling metrics : CPU utilization 60%
+
+### Compute Engine
+    1. Instance Groups
+    2. Create Instance Group
+    3. New managed instance group (stateless)
+       - Name : lb-group-example
+       - Description : load balancer instance group
+       - Instance template
+         - Create a new Instance template
+		
+- Location : Single zone (choose cheapest)
+- Autoscaling : On add and remove instance to the group
+  Minimum (2) Maximum (5)
+- Autoscaling metrics : CPU utilization 60%
 
 
 
