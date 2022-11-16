@@ -3,7 +3,7 @@
 # Compute Engine
 - Instance Groups
 - Create Instance Group
--  New managed instance group (stateless)
+- New managed instance group (stateless)
   - Name : lb-group-example
   - Description : load balancer instance group
     - Instance template
