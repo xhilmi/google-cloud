@@ -1,30 +1,22 @@
 # Simple HTTP Load Balancer in Google Cloud Platform
 
-# ansible
-- playbook-fish
-  - fish.yml
-- playbook-nginx-php
-  - nginx-php.yml
-    - oke
-- README
-- fish.sh
-- install.sh
-
-
 # Compute Engine
 - Instance Groups
 - Create Instance Group
-- New managed instance group (stateless)
+-  New managed instance group (stateless)
   - Name : lb-group-example
   - Description : load balancer instance group
     - Instance template
     - Create a new Instance template
-
+    - d
+  - d
+  - d
+  - d
 - Location : Single zone (choose cheapest)
 - Autoscaling : On add and remove instance to the group
-  Minimum (2) Maximum (5)
+  - nginx-php.yml
+    - oke
 - Autoscaling metrics : CPU utilization 60%
-
 
 
 #! /bin/bash
