@@ -6,7 +6,7 @@
     - Create a new Instance template
     - Name : lb-template-debian
     - Machine configuration : E2 e2-micro
-    - Boot disk : Debian or Ubuntu >>> 10GB
+    - Boot disk : Debian >>> 10GB
     - Identity and API access : Allow default access
     - Networking : Network tags
     - Advanced options >>> Management >>> Automation
