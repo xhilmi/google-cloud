@@ -1,9 +1,6 @@
-# Google Cloud Platform
-# Simple HTTP Load Balancer 
-# Operating System Debian
+# Google Cloud Platform | Simple HTTP Load Balancer | Debian #
 
-# Create Instance Template
-### Compute Engine
+### Create Instance Template = Compute Engine
 - Virtual Machine
   - Instance Template
     - Create a new Instance template
@@ -13,20 +10,19 @@
     - Identity and API access : Allow default access
     - Networking : Network tags
     - Advanced options >>> Management >>> Automation
-      - Startup script
-        #!/bin/bash
-        sudo apt-get update
-        sudo apt-get install apache2 -y
-        sudo a2ensite default-ssl
-        sudo a2enmod ssl
-        vm_hostname="$(curl -s -H "Metadata-Flavor:Google" http://metadata/computeMetadata/v1/instance/name)"
-        sudo echo "Page load balancer served from: $vm_hostname" |
-        sudo tee /var/www/html/index.html
-        sudo systemctl restart apache2
+      - Startup script \
+        #!/bin/bash \
+        sudo apt-get update \
+        sudo apt-get install apache2 -y \
+        sudo a2ensite default-ssl \
+        sudo a2enmod ssl \
+        vm_hostname="$(curl -s -H "Metadata-Flavor:Google" http://metadata/computeMetadata/v1/instance/name)" \
+        sudo echo "Page load balancer served from: $vm_hostname" | \
+        sudo tee /var/www/html/index.html \
+        sudo systemctl restart apache2 \
   - Create
 
-# Create Instance Group
-### Compute Engine
+### Create Instance Group = Compute Engine
 - Instance Groups
   - Instance Groups
     - Create Instance Group
@@ -47,8 +43,7 @@
         - Port mapping : http 80
   - Create     
 
-# Create Health Checks
-### Compute Engine
+### Create Health Checks = Compute Engine
 - Instance Groups
   - Health Checks
     - Create Health Check
@@ -62,7 +57,7 @@
       - Health criteria : use default settings 
   - Create  
   
-# Network Services
+### Create Load Balancing = Network Services
 - Load Balancing
   - Create Load Balancer
     - HTTP(S) Load Balancing >>> Start Configuration
