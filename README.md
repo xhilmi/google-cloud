@@ -1,3 +1,4 @@
 # Google Cloud Platform
-  - Allow Remote SSH
+  - Allow SSH
+  - Cloud DNS
   - Load Balancing
