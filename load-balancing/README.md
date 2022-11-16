@@ -14,7 +14,7 @@
       - Identity and API access >>> Allow default access
       - Networking >>> Network tags
       - Management >>> Automation
-        - Startup script
+        - Startup script \
           #!/bin/bash
           sudo apt-get update \
           sudo apt-get install apache2 -y \
