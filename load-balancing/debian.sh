@@ -7,7 +7,7 @@
 - Virtual Machine
   - Instance Template
     - Create a new Instance template
-    - Name : lb-template
+    - Name : lb-template-debian
     - Machine configuration : E2 e2-micro
     - Boot disk : Debian or Ubuntu >>> 10GB
     - Identity and API access : Allow default access
@@ -31,17 +31,17 @@
   - Instance Groups
     - Create Instance Group
       - New managed instance group (stateless)
-        - Name : lb-group
-        - Description : lb-group
-        - Instante template : lb-template
+        - Name : lb-group-debian
+        - Description : lb-group-debian
+        - Instante template : lb-template-debian
       - Location
-        - Single zone
+        - Multiple zone
           - Region : us-central1 (lowa)
-          - Zone : us-central1-a
+          - Zone : us-central1-all
       - Autoscaling
         - Autoscaling mode : On add and remove instance to the group
-        - Minimum number of instances : 5
-        - Maximum number of instances : 10
+        - Minimum number of instances : 2
+        - Maximum number of instances : 4
       - Autoscaling metrics
         - CPU utilization : 60% (default)
         - Port mapping : http 80
@@ -101,19 +101,4 @@
           - Backend 1 : lb-backend
         - Review and finalize   
   - Create        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
 
