@@ -14,17 +14,16 @@
   - Identity and API access >>> Allow default access
   - Networking >>> Network tags
   - Management >>> Automation
-  - Startup script \
-    #!/bin/bash
-    sudo apt-get update
-    sudo apt-get install apache2 -y
-    sudo a2ensite default-ssl \
-       sudo a2enmod ssl \
-       vm_hostname="$(curl -s -H "Metadata-Flavor:Google" http://metadata/computeMetadata/v1/instance/name)" \
-       sudo echo "Page load balancer served from: $vm_hostname" | \
-       sudo tee /var/www/html/index.html \
-       sudo systemctl restart apache2 \      
-
+    - Startup script
+      #!/bin/bash
+      sudo apt-get update
+      sudo apt-get install apache2 -y
+      sudo a2ensite default-ssl
+      sudo a2enmod ssl
+      vm_hostname="$(curl -s -H "Metadata-Flavor:Google" http://metadata/computeMetadata/v1/instance/name)"
+      sudo echo "Page load balancer served from: $vm_hostname" |
+      sudo tee /var/www/html/index.html
+      sudo systemctl restart apache2
   - d
   - d
   - d
