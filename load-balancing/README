@@ -23,8 +23,7 @@
        vm_hostname="$(curl -s -H "Metadata-Flavor:Google" http://metadata/computeMetadata/v1/instance/name)" \
        sudo echo "Page load balancer served from: $vm_hostname" | \
        sudo tee /var/www/html/index.html \
-       sudo systemctl restart apache2 \
-          
+       sudo systemctl restart apache2 \      
 
   - d
   - d
