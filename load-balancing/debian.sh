@@ -1,7 +1,9 @@
-# Simple HTTP Load Balancer in Google Cloud Platform
-# Debian
+# Google Cloud Platform
+# Simple HTTP Load Balancer 
+# Operating System Debian
 
-# Compute Engine
+# Create Instance Template
+### Compute Engine
 - Virtual Machine
   - Instance Template
     - Create a new Instance template
@@ -22,8 +24,9 @@
         sudo tee /var/www/html/index.html
         sudo systemctl restart apache2
   - Create
-  
-# Compute Engine
+
+# Create Instance Group
+### Compute Engine
 - Instance Groups
   - Instance Groups
     - Create Instance Group
@@ -43,7 +46,22 @@
         - CPU utilization : 60% (default)
         - Port mapping : http 80
   - Create     
-    
+
+# Create Health Checks
+### Compute Engine
+- Instance Groups
+  - Health Checks
+    - Create Health Check
+      - Name : lb-health-check
+      - Description : lb-health-check
+      - Scope : global
+      - Protocol : HTTP
+      - Port : 80
+      - Proxy protocol : none
+      - Request path : /
+      - Health criteria : use default settings 
+  - Create  
+  
 # Network Services
 - Load Balancing
   - Create Load Balancer
@@ -74,12 +92,13 @@
             - Scope : per instance
             - Capacity : 100
             - Done
-
+          - Health check : lb-health-check
+          - Create
+          - OK
         - Host and path rules
-        - Review and finalize
-        
-        
-        
+          - Simple host and path rule
+          - Backend 1 : lb-backend
+        - Review and finalize   
   - Create        
         
         
