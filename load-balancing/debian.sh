@@ -68,6 +68,7 @@
     - HTTP(S) Load Balancing >>> Start Configuration
       - Internet facing or internal only : From Internet to my VMs or serverless services
       - Global or Regional : Global HTTP(S) Load Balancer (classic)
+        - Name : lb-website
         - Frontend configuration 
           - Name : lb-frontend
           - Protocol : HTTP
