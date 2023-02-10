@@ -14,7 +14,7 @@ sudo sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/g' /etc/ssh/ss
 
 sudo yum install -y curl policycoreutils-python;
 sudo semanage port -a -t ssh_port_t -p tcp 64000;
-sudo firewall-cmd --permanent --add-port=6400/tcp;
+sudo firewall-cmd --permanent --add-port=64000/tcp;
 sudo firewall-cmd --reload;
 
 sudo systemctl enable firewalld;
