@@ -12,6 +12,7 @@ sudo sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ss
 sudo sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/g' /etc/ssh/sshd_config;
 
 sudo ufw allow 64000;
+sudo ufw allow 22;
 sudo ufw --force enable;
 sudo ufw reload;
 
