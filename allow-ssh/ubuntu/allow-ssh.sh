@@ -17,5 +17,4 @@ sudo ufw --force enable;
 sudo ufw reload;
 
 sudo service sshd restart;
-
-sudo ls -lah;
+sudo service sshd status;
