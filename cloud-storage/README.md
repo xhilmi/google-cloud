@@ -1,4 +1,3 @@
-cat <<EOF | sudo tee .github/README.md
 # step export
 1. prepare vm instance
 2. create snapshot from vm instance
