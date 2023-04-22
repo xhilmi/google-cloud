@@ -14,14 +14,14 @@ case $choice in
   1)
     read -p "Enter the desired SSH port number: " port
     echo "Configuring SSH for CentOS..."
-    sudo yum update -y;
+    sudo yum update -y > /dev/null 2>&1;
     sudo yum provides *bin/semanage;
-    sudo yum install git nano vim wget curl net-tools policycoreutils-python-utils -y;
+    sudo yum install git nano vim wget curl net-tools policycoreutils-python-utils -y > /dev/null 2>&1;
     sudo sed -i "s/.*Port .*/Port $port/g" /etc/ssh/sshd_config;
     sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config;
     sudo sed -i 's/PermitRootLogin no/PermitRootLogin yes/g' /etc/ssh/sshd_config;
     sudo sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/g' /etc/ssh/sshd_config;
-    sudo yum install -y curl policycoreutils-python;
+    sudo yum install -y curl policycoreutils-python > /dev/null 2>&1;;
     sudo semanage port -a -t ssh_port_t -p tcp $port;
     sudo firewall-cmd --permanent --add-port=$port/tcp;
     sudo firewall-cmd --reload;
@@ -33,8 +33,8 @@ case $choice in
   2)
     read -p "Enter the desired SSH port number: " port
     echo "Configuring SSH for Ubuntu/Debian..."
-    sudo apt update -y;
-    sudo apt install git nano vim wget curl net-tools -y;
+    sudo apt update -y > /dev/null 2>&1;
+    sudo apt install git nano vim wget curl net-tools -y > /dev/null 2>&1;
     sudo sed -i "s/.*Port .*/Port $port/g" /etc/ssh/sshd_config;
     sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config;
     sudo sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config;
