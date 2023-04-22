@@ -17,7 +17,7 @@ case $choice in
     sudo yum update -y;
     sudo yum provides *bin/semanage;
     sudo yum install git nano vim wget curl net-tools policycoreutils-python-utils -y;
-    sudo sed -i "s/#Port .*/Port $port/g" /etc/ssh/sshd_config;
+    sudo sed -i "s/.*Port .*/Port $port/g" /etc/ssh/sshd_config;
     sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config;
     sudo sed -i 's/PermitRootLogin no/PermitRootLogin yes/g' /etc/ssh/sshd_config;
     sudo sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/g' /etc/ssh/sshd_config;
@@ -35,7 +35,7 @@ case $choice in
     echo "Configuring SSH for Ubuntu/Debian..."
     sudo apt update -y;
     sudo apt install git nano vim wget curl net-tools -y;
-    sudo sed -i "s/#Port .*/Port $port/g" /etc/ssh/sshd_config;
+    sudo sed -i "s/.*Port .*/Port $port/g" /etc/ssh/sshd_config;
     sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config;
     sudo sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config;
     sudo sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/g' /etc/ssh/sshd_config;
