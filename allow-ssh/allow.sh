@@ -21,7 +21,7 @@ case $choice in
     sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config;
     sudo sed -i 's/PermitRootLogin no/PermitRootLogin yes/g' /etc/ssh/sshd_config;
     sudo sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/g' /etc/ssh/sshd_config;
-    sudo yum install -y curl policycoreutils-python > /dev/null 2>&1;;
+    sudo yum install -y curl policycoreutils-python > /dev/null 2>&1;
     sudo semanage port -a -t ssh_port_t -p tcp $port;
     sudo firewall-cmd --permanent --add-port=$port/tcp;
     sudo firewall-cmd --reload;
