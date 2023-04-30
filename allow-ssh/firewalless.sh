@@ -4,8 +4,8 @@
 # ===============================================
 
 echo "Please choose your operating system:"
-echo "1. CentOS"
-echo "2. Ubuntu"
+echo "1. RHEL/CentOS/Alma/Rocky"
+echo "2. Ubuntu/Debian"
 echo "3. Exit"
 
 read -p "Enter your choice (1/2/3): " choice
@@ -13,7 +13,7 @@ read -p "Enter your choice (1/2/3): " choice
 case $choice in
   1)
     read -p "Enter the desired SSH port number: " port
-    echo "Configuring SSH for CentOS..."
+    echo "Configuring SSH for RHEL/CentOS/Alma/Rocky..."
     sudo yum update -y > /dev/null 2>&1
     sudo yum provides *bin/semanage
     sudo yum install git nano vim wget curl net-tools policycoreutils-python-utils -y > /dev/null 2>&1
@@ -25,8 +25,10 @@ case $choice in
     sudo semanage port -a -t ssh_port_t -p tcp $port
     sudo firewall-cmd --permanent --add-port=$port/tcp
     sudo firewall-cmd --reload
-    sudo systemctl enable firewalld
-    sudo systemctl restart firewalld
+    # sudo systemctl enable firewalld
+    # sudo systemctl restart firewalld
+    sudo systemctl disable firewalld
+    sudo systemctl stop firewalld
     sudo service sshd restart
     sudo ls -lah
     ;;
@@ -40,8 +42,12 @@ case $choice in
     sudo sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
     sudo sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/g' /etc/ssh/sshd_config
     sudo ufw allow $port
-    sudo ufw --force enable
-    sudo ufw reload
+    # sudo ufw --force enable
+    # sudo ufw reload
+    sudo ufw --force disable
+    sudo ufw disable
+    sudo systemctl disable ufw
+    sudo systemctl stop ufw
     sudo service sshd restart
     sudo service sshd status
     ;;
