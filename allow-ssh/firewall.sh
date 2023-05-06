@@ -36,9 +36,9 @@ case $choice in
     sudo apt update -y > /dev/null 2>&1
     sudo apt install git nano vim wget curl net-tools -y > /dev/null 2>&1
     sudo sed -i "s/.*Port .*/Port $port/g" /etc/ssh/sshd_config
-    sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
-    sudo sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
-    sudo sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/g' /etc/ssh/sshd_config
+    sudo sed -i 's/.*PasswordAuthentication .*/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+    sudo sed -i 's/.*PermitRootLogin .*/PermitRootLogin yes/g' /etc/ssh/sshd_config
+    sudo sed -i 's/.*PubkeyAuthentication .*/PubkeyAuthentication yes/g' /etc/ssh/sshd_config
     sudo ufw allow $port
     sudo ufw --force enable
     sudo ufw reload
