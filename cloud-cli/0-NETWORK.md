@@ -1,7 +1,7 @@
 # 1. Create VPC Network
 - https://cloud.google.com/sdk/gcloud/reference#--project
 ```
-gcloud compute networks create xkube-net \
+gcloud compute networks create xkube-network \
   --subnet-mode "custom" \
   --project "PROJECT_ID"
 ```
@@ -13,7 +13,7 @@ gcloud compute networks create xkube-net \
 - https://cloud.google.com/sdk/gcloud/reference/compute/networks/subnets
 ```
 gcloud compute networks subnets create xkube-subnet \
-  --network "xkube-net" \
+  --network "xkube-network" \
   --region "us-central1" \
   --range 10.5.0.0/20 \
   --secondary-range xkube-pods=10.4.0.0/19 \
