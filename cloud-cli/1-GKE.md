@@ -65,13 +65,16 @@ gcloud container node-pools create xkube-nodepool \
   --machine-type "e2-medium" \
   --disk-size 25 \
   --disk-type "pd-balanced" \
-  --max-pods-per-node 8
+  --max-pods-per-node 8 \
+  --project "PROJECT_ID"
 ```
 ```
 gcloud container clusters get-credentials xkube-cluster \
-  --region "us-central1"
+  --region "us-central1" \
+  --project "PROJECT_ID"
 ```
 ```
 gcloud container clusters update xkube-cluster \
-  --max-pods-per-node 8
+  --max-pods-per-node 8 \
+  --project "PROJECT_ID"
 ```
