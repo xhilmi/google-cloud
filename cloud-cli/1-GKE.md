@@ -3,6 +3,7 @@
 ```
 gcloud compute networks create xkube-network \
   --subnet-mode "custom" \
+  --zone "us-west2" \
   --project "PROJECT_ID"
 ```
 # 2. Create Kubernetes Cluster
@@ -10,7 +11,7 @@ gcloud compute networks create xkube-network \
 - https://cloud.google.com/sdk/gcloud/reference/container/node-pools/create
 ```
 gcloud container clusters create xkube-cluster \
-  --region "us-central1" \
+  --region "us-west2" \
   --network "xkube-network" \
   --cluster-version "1.24.11-gke.1000" \
   --machine-type "e2-medium" \
@@ -28,7 +29,7 @@ gcloud container clusters create xkube-cluster \
   --cluster-secondary-range-name "xkube-pods" \
   --services-secondary-range-name "xkube-services" \
   --cluster-ipv4-cidr 10.4.0.0/19 \
-  --services-ipv4-cidr 10.0.0.0/16 \
+  --services-ipv4-cidr 10.0.0.0/14 \
   --master-ipv4-cidr 172.16.0.0/28 \
   --spot \
   --location-policy "ANY" \
@@ -40,7 +41,7 @@ gcloud container clusters create xkube-cluster \
 ```
 gcloud compute routers create xkube-router \
   --network "xkube-network" \
-  --region "us-central1" \
+  --region "us-west2" \
   --project "PROJECT_ID"
 ```
 
@@ -48,7 +49,7 @@ gcloud compute routers create xkube-router \
 - https://cloud.google.com/sdk/gcloud/reference/compute/routers/nats/create
 ```
 gcloud compute routers nats create xkube-nat \
-  --router-region "us-central1" \
+  --router-region "us-west2" \
   --router "xkube-router" \
   --nat-all-subnet-ip-ranges \
   --auto-allocate-nat-external-ips \
@@ -70,7 +71,7 @@ gcloud container node-pools create xkube-nodepool \
 ```
 ```
 gcloud container clusters get-credentials xkube-cluster \
-  --region "us-central1" \
+  --region "us-west2" \
   --project "PROJECT_ID"
 ```
 ```
