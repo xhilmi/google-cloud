@@ -3,7 +3,6 @@
 ```
 gcloud compute networks create xkube-network \
   --subnet-mode "custom" \
-  --zone "us-west2" \
   --project "PROJECT_ID"
 ```
 # 2. Create Kubernetes Cluster
