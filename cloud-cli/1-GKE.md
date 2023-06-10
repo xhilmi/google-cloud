@@ -55,7 +55,10 @@ gcloud compute routers nats create xkube-nat \
   --project "PROJECT_ID"
 ```
 
-# 5.  Others
+# Note: 
+- Don't forget to add your ip on (GKE > Cluster > Edit > Control plane authorized networks > Add IP > Save)
+
+# Others
 - Run this to create more customizable nodes
 ```
 gcloud container node-pools create xkube-nodepool \
