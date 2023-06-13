@@ -56,7 +56,8 @@ gcloud compute routers nats create xkube-nat \
 ```
 
 # Note: 
-- Don't forget to add your ip on (GKE > Cluster > Edit > Control plane authorized networks > Add IP > Save)
+- If we enabled `--enable-master-authorized-networks` don't forget to add `--master-authorized-networks=NETWORK,[NETWORK,…]`
+- Or we cand add manually allowed IP Address on (GKE > Cluster > Edit > Control plane authorized networks > Add IP > Save)
 
 # Others
 - Run this to create more customizable nodes
