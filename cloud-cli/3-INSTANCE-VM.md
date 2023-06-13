@@ -7,7 +7,9 @@ gcloud compute machine-types list --filter="name:(e2) zone:(asia-southeast2)"
 gcloud compute images list --filter="name~'ubuntu'"
 ```
 ```
-gcloud compute instances create xkube-vm \
+gcloud compute instances create in \
+  --boot-disk-type "pd-standard" \
+  --boot-disk-size 20 \
   --machine-type "e2-micro" \
   --image-project "ubuntu-os-cloud" \
   --image-family "ubuntu-minimal-2204-lts" \
