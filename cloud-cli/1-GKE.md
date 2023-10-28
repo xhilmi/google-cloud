@@ -1,9 +1,14 @@
+# 0. Export Project ID
+```
+export PROJECT_ID=$(gcloud config get-value project 2> /dev/null) 
+```
+```
 # 1. Create VPC Network
 - https://cloud.google.com/sdk/gcloud/reference#--project
 ```
 gcloud compute networks create xkube-network \
   --subnet-mode "custom" \
-  --project "PROJECT_ID"
+  --project "$PROJECT_ID"
 ```
 # 2. Create Kubernetes Cluster
 - https://cloud.google.com/sdk/gcloud/reference/container/clusters/create
@@ -32,7 +37,7 @@ gcloud container clusters create xkube-cluster \
   --master-ipv4-cidr 172.16.0.0/28 \
   --spot \
   --location-policy "ANY" \
-  --project "PROJECT_ID"
+  --project "$PROJECT_ID"
 ```
 
 # 3. Create Routers    
@@ -41,7 +46,7 @@ gcloud container clusters create xkube-cluster \
 gcloud compute routers create xkube-router \
   --network "xkube-network" \
   --region "us-west2" \
-  --project "PROJECT_ID"
+  --project "$PROJECT_ID"
 ```
 
 # 4. Create Nats
@@ -52,7 +57,7 @@ gcloud compute routers nats create xkube-nat \
   --router "xkube-router" \
   --nat-all-subnet-ip-ranges \
   --auto-allocate-nat-external-ips \
-  --project "PROJECT_ID"
+  --project "$PROJECT_ID"
 ```
 
 # Note: 
@@ -70,15 +75,15 @@ gcloud container node-pools create xkube-nodepool \
   --disk-size 25 \
   --disk-type "pd-balanced" \
   --max-pods-per-node 8 \
-  --project "PROJECT_ID"
+  --project "$PROJECT_ID"
 ```
 ```
 gcloud container clusters get-credentials xkube-cluster \
   --region "us-west2" \
-  --project "PROJECT_ID"
+  --project "$PROJECT_ID"
 ```
 ```
 gcloud container clusters update xkube-cluster \
   --max-pods-per-node 8 \
-  --project "PROJECT_ID"
+  --project "$PROJECT_ID"
 ```
