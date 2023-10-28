@@ -17,7 +17,7 @@ gcloud compute networks create xkube-network \
 gcloud container clusters create xkube-cluster \
   --region "us-west2" \
   --network "xkube-network" \
-  --cluster-version "1.24.11-gke.1000" \
+  --cluster-version "1.27.3-gke.100" \
   --machine-type "e2-medium" \
   --image-type "COS_CONTAINERD" \
   --disk-type "pd-balanced" \
