@@ -36,14 +36,14 @@ Conclusion:
 
 Installation Cloud (Singapore) asia-southeast1:
 1. Membuat custom VPC dengan subnet (172.16.10.0/24)
-   # vpc-cloud
+   ## vpc-cloud
    gcloud compute networks create vpc-cloud \
      --project="thanos-cloud" \
      --description="vpc-cloud" \
      --subnet-"mode=custom" \
      --mtu=1460 \
      --bgp-routing-mode="regional"
-   # subnet-cloud
+   ## subnet-cloud
    gcloud compute networks subnets create subnet-cloud \
      --project="thanos-cloud" \
      --description="subnet-cloud" \
@@ -53,7 +53,7 @@ Installation Cloud (Singapore) asia-southeast1:
      --region="asia-southeast1" \
      --enable-private-ip-google-access
 2. Membuat firewall rule untuk memfilter port mana saja yang diizinkan lalu membuat spesifik tag target ke vm mana saja4. x
-   # firewall-cloud
+   ## firewall-cloud
    gcloud compute firewall-rules create firewall-cloud \
      --project="thanos-cloud" \
      --description="firewall-cloud" \
@@ -65,12 +65,12 @@ Installation Cloud (Singapore) asia-southeast1:
      --source-ranges=0.0.0.0/0 \
      --target-tags="firewall-cloud"
 3. Membuat IP External Static dan IP Internal Static untuk web-server
-   # ip-external-web-server
+   ## ip-external-web-server
    gcloud compute addresses create ip-external-web-server \
      --project="thanos-cloud" \
      --description="ip-external-web-server" \
      --region="asia-southeast1"
-   # ip-internal-web-server
+   ## ip-internal-web-server
    gcloud compute addresses create ip-internal-web-server \
      --project="thanos-cloud" \
      --description="ip-internal-web-server" \
@@ -79,13 +79,13 @@ Installation Cloud (Singapore) asia-southeast1:
      --subnet="subnet-cloud" \
      --purpose=GCE_ENDPOINT
 4. Membuat IP External Static untuk cloud-vpn
-   # ip-external-cloud-vpn
+   ## ip-external-cloud-vpn
    gcloud compute addresses create ip-external-cloud-vpn \
      --project="thanos-cloud" \
      --description="ip-external-cloud-vpn" \
      --region="asia-southeast1"
 5. Membuat web-server menggunakan OS Ubuntu 22.04 LTS
-   # web-server
+   ## web-server
    gcloud compute instances create web-server \
      --project="thanos-cloud" \
      --zone="asia-southeast1-a" \
@@ -98,21 +98,21 @@ Installation Cloud (Singapore) asia-southeast1:
      --tags="firewall-cloud" \
      --can-ip-forward
 6. Melakukan konfigurasi pada web-server
-   # SSH into web-server
+   ## SSH into web-server
    gcloud compute ssh --zone "asia-southeast1-a" "web-server" --project "thanos-cloud"
-   # Install aaPanel (https://www.aapanel.com/new/download.html?btwaf=11481464) + MySQL-client
+   ## Install aaPanel (https://www.aapanel.com/new/download.html?btwaf=11481464) + MySQL-client
    sudo su -
    apt update
    apt install mysql-client -y
    wget -O install.sh http://www.aapanel.com/script/install-ubuntu_6.0_en.sh && sudo bash install.sh aapanel
 7. Membuat Cloud VPN    
-   # vpn-gateway
+   ## vpn-gateway
    gcloud compute target-vpn-gateways create vpn-gateway \
      --project="thanos-cloud" \
      --description="vpn-gateway" \
      --region="asia-southeast1" \
      --network="vpc-cloud"
-   # forwarding-rules
+   ## forwarding-rules
    gcloud compute forwarding-rules create forwarding-rules-esp \
      --project="thanos-cloud" \
      --region="asia-southeast1" \
@@ -133,7 +133,7 @@ Installation Cloud (Singapore) asia-southeast1:
      --ip-protocol=UDP \
      --ports=4500 \
      --target-vpn-gateway="vpn-gateway"
-   # vpn-tunnel
+   ## vpn-tunnel
    gcloud compute vpn-tunnels create vpn-tunnel \
      --project="thanos-cloud" \
      --description="vpn-tunnel" \
@@ -144,7 +144,7 @@ Installation Cloud (Singapore) asia-southeast1:
      --local-traffic-selector=0.0.0.0/0 \
      --remote-traffic-selector=0.0.0.0/0 \
      --target-vpn-gateway="vpn-gateway"
-   # vpn-tunnel-route
+   ## vpn-tunnel-route
    gcloud compute routes create vpn-tunnel-route-1 \
      --project="thanos-cloud" \
      --network="vpc-cloud" \
@@ -159,8 +159,17 @@ Installation Cloud (Singapore) asia-southeast1:
      --destination-range=192.168.10.10/32 \
      --next-hop-vpn-tunnel="vpn-tunnel" \
      --next-hop-vpn-tunnel-region="asia-southeast1"
-
-
+8. Langkah terakhir kita membuat routes dari cloud ke onprem
+   # routes-to-onprem
+   gcloud beta compute routes create routes-to-onprem \
+     --project="thanos-cloud" \
+     --description="routes-to-onprem" \
+     --network="vpc-cloud" \
+     --priority=10 \
+     --tags="firewall-cloud" \
+     --destination-range=192.168.10.0/24 \
+     --next-hop-vpn-tunnel="vpn-tunnel" \
+     --next-hop-vpn-tunnel-region="asia-southeast1"
 
 
 
