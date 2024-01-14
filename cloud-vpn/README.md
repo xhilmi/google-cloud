@@ -1,5 +1,3 @@
-README.md
-
 Integrasi Server On-Premise dengan Server Cloud menggunakan Cloud VPN dan MikroTik IPsec untuk Peningkatan Keamanan Koneksi
         
 Use Case:
